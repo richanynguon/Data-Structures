@@ -1,19 +1,32 @@
-import sys
-sys.path.append('../doubly_linked_list')
+
 from doubly_linked_list import DoublyLinkedList
 
+# https://stackoverflow.com/questions/393556/when-to-use-a-linked-list-over-an-array-array-list
+
+# queue is FIFO
+
+'''
+ [h]>[]>[]>[]>[]->none
+'''
 
 class Queue:
     def __init__(self):
         self.size = 0
+        self.storage = DoublyLinkedList()
         # Why is our DLL a good choice to store our elements?
+        # because it can dynamically change without effort
         # self.storage = ?
 
     def enqueue(self, value):
-        pass
+        self.size+=1
+        self.storage.add_to_tail(value)
 
     def dequeue(self):
-        pass
+        if self.size < 1:
+            return
+        self.size-=1
+        dequeued_value = self.storage.remove_from_head()
+        return dequeued_value
 
     def len(self):
-        pass
+        return self.size
