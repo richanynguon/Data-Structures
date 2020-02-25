@@ -13,9 +13,6 @@ class Queue:
     def __init__(self):
         self.size = 0
         self.storage = DoublyLinkedList()
-        # Why is our DLL a good choice to store our elements?
-        # because it can dynamically change without effort
-        # self.storage = ?
 
     def enqueue(self, value):
         self.size+=1
