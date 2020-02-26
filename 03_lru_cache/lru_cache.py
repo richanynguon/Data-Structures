@@ -8,13 +8,16 @@ class LRUCache:
     [x] the current number of nodes it is holding,
     [x] a doubly-linked list that holds the key-value entries in the correct order,
     [x] as well as a storage dict that provides fast access to every node stored in the cache.
+
+    o(1) for accessing dict and removing and adding doublylinked list 
+    worst case o(n) for 
     """
 
     def __init__(self, limit=10):
         self.limit = limit
         self.size = 0
         self.storage = DoublyLinkedList()
-        self.hash = {}
+        self.cache = {}
 
     """
     [] Retrieves the value associated with the given key.
@@ -23,8 +26,8 @@ class LRUCache:
     """
 
     def get(self, key):
-        if key in self.hash:
-            node = self.hash[key]
+        if key in self.cache:
+            node = self.cache[key]
             self.storage.move_to_front(node)
             return node.value[1]
         else:
@@ -38,18 +41,18 @@ class LRUCache:
     """
 
     def set(self, key, value):
-        if key in self.hash:
-            node = self.hash[key]
+        if key in self.cache:
+            node = self.cache[key]
             node.value = (key, value)
             self.storage.move_to_front(node)
             return
-        
+            
         if self.limit is self.size:
-            del self.hash[self.storage.tail.value[0]]
+            del self.cache[self.storage.tail.value[0]]
             self.storage.remove_from_tail()
             self.size -= 1
 
         self.storage.add_to_head((key, value))
-        self.hash[key] = self.storage.head
+        self.cache[key] = self.storage.head
         self.size += 1
 

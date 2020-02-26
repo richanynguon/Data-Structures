@@ -20,3 +20,6 @@ class Stack:
 
     def len(self):
         return self.size
+
+
+#maybe tail? because it manipulating the end of the stack
