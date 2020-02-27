@@ -7,16 +7,16 @@ class HeapTests(unittest.TestCase):
     def setUp(self):
         self.heap = Heap()
 
-    def test_default_heap_insert_works(self):
-        self.heap.insert(6)
-        self.heap.insert(8)
-        self.heap.insert(10)
-        self.heap.insert(9)
-        self.heap.insert(1)
-        self.heap.insert(9)
-        self.heap.insert(9)
-        self.heap.insert(5) 
-        self.assertEqual(self.heap.storage, [10, 9, 9, 6, 1, 8, 9, 5])
+    # def test_default_heap_insert_works(self):
+    #     self.heap.insert(6)
+    #     self.heap.insert(8)
+    #     self.heap.insert(10)
+    #     self.heap.insert(9)
+    #     self.heap.insert(1)
+    #     self.heap.insert(9)
+    #     self.heap.insert(9)
+    #     self.heap.insert(5) 
+    #     self.assertEqual(self.heap.storage, [10, 9, 9, 6, 1, 8, 9, 5])
 
     # def test_default_get_priority_works(self):
     #     self.heap.insert(6)
@@ -116,24 +116,24 @@ class HeapTests(unittest.TestCase):
     #     self.heap.delete()
     #     self.assertEqual(self.heap.get_priority(), 9)
 
-    # def test_custom_delete_elements_in_order(self):
-    #     self.heap = Heap(lambda x, y: x < y)
+    def test_custom_delete_elements_in_order(self):
+        self.heap = Heap(lambda x, y: x < y)
 
-    #     self.heap.insert(6)
-    #     self.heap.insert(7)
-    #     self.heap.insert(5)
-    #     self.heap.insert(8)
-    #     self.heap.insert(10)
-    #     self.heap.insert(1)
-    #     self.heap.insert(2)
-    #     self.heap.insert(5)
+        self.heap.insert(6)
+        self.heap.insert(7)
+        self.heap.insert(5)
+        self.heap.insert(8)
+        self.heap.insert(10)
+        self.heap.insert(1)
+        self.heap.insert(2)
+        self.heap.insert(5)
 
-    #     ascending_order = []
+        ascending_order = []
 
-    #     while self.heap.get_size() > 0:
-    #         ascending_order.append(self.heap.delete())
+        while self.heap.get_size() > 0:
+            ascending_order.append(self.heap.delete())
 
-    #     self.assertEqual(ascending_order, [1, 2, 5, 5, 6, 7, 8, 10])
+        self.assertEqual(ascending_order, [1, 2, 5, 5, 6, 7, 8, 10])
 
     # def test_bubble_up_was_called(self):
     #     self.heap._bubble_up = MagicMock()
