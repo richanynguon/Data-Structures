@@ -1,21 +1,9 @@
-class Heap:
+from generic_heap import Heap as GenericHeap
+
+
+class Heap(GenericHeap):
     def __init__(self):
-        self.storage = []
-
-    def insert(self, value):
-        pass
-
-    def delete(self):
-        pass
+        super().__init__(lambda x, y: x > y)
 
     def get_max(self):
-        pass
-
-    def get_size(self):
-        pass
-
-    def _bubble_up(self, index):
-        pass
-
-    def _sift_down(self, index):
-        pass
+        return super().get_priority()
